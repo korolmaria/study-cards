@@ -1,1 +1,1 @@
-###Study React App###
+Study React App
