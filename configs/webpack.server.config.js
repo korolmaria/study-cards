@@ -2,6 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const NODE_ENV = process.env.NODE_ENV;
+const GLOBAL_CSS_REGEXP = /\.global\.less$/;
 
 module.exports = {
     target: 'node',
@@ -9,7 +10,8 @@ module.exports = {
     entry: path.resolve(__dirname, '../src/server/server.js'),
     output: {
         path: path.resolve(__dirname, "../dist/server"),
-        filename: "server.js"
+        filename: "server.js",
+        publicPath: '/static/',
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
@@ -32,7 +34,12 @@ module.exports = {
                         onlyLocals: true,
                     },
                 },
-                    'less-loader']
+                    'less-loader'],
+                exclude: GLOBAL_CSS_REGEXP
+            },
+            {
+                test: GLOBAL_CSS_REGEXP,
+                use: ['css-loader', 'less-loader']
             }
         ]
     },

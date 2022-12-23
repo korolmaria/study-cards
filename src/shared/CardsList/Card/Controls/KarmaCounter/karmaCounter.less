@@ -1,0 +1,38 @@
+@import "../../../../../assets/variables";
+
+.karmaCounter > * + * {
+  padding: 0 0 0 4px;
+}
+
+.karmaValue {
+  color: @color-greyC4;
+}
+
+@media all and (min-width: 1024px) {
+  .karmaCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+  }
+
+  .karmaCounter > * + * {
+    padding: 7px 0 0;
+  }
+
+  .karmaValue {
+    font-size: 14px;
+    line-height: 16px;
+    color: @color-black;
+  }
+}
+
+@media all and (min-width: 1540px) {
+  .karmaCounter > button.up:hover > svg > path {
+    fill: @color-orange;
+  }
+
+  .karmaCounter > button.down:hover > svg > path {
+    fill: @color-orange;
+  }
+}

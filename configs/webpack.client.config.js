@@ -5,6 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development';
 const IS_PROD = NODE_ENV === 'production';
+const GLOBAL_CSS_REGEXP = /\.global\.less$/;
 
 function setupDevtool(){
     if(IS_DEV) return 'eval';
@@ -16,7 +17,7 @@ module.exports= {
             '.js', '.jsx', '.ts', '.tsx', '.json'
         ],
         alias:{
-            'react-dom':IS_DEV ? '@hot-loader/react-dom':'react-dom'
+            'react-dom': IS_DEV ? '@hot-loader/react-dom':'react-dom'
         }
     },
     mode:NODE_ENV ? NODE_ENV :'development',
@@ -47,7 +48,12 @@ module.exports= {
                     }
                 },
                 'less-loader'
-                ]
+                ],
+                exclude: GLOBAL_CSS_REGEXP,
+            },
+            {
+                test: GLOBAL_CSS_REGEXP,
+                use: ['style-loader', 'css-loader', 'less-loader']
             }
         ]
     },

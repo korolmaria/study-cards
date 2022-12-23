@@ -1,0 +1,46 @@
+@import '../../../assets/variables';
+
+.card {
+  position: relative;
+  background-color: @color-white;
+  border-radius: 7px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card > *, .textContent > * {
+  flex: 1 1 100%;
+}
+
+.card > * + * {
+  padding: 13px 0 0;
+}
+
+.card:hover h2 a, .card:focus-within h2 a {
+  color: @color-orange;
+}
+
+@media all and (min-width: 1024px) {
+  .card {
+    background-color: transparent;
+    flex-flow: row nowrap;
+    max-height: 107px;
+    padding: 0 40px;
+  }
+  .card > * {
+    flex: 0 0;
+  }
+  .card > * + * {
+    padding: 0;
+  }
+}
+
+@media all and (min-width: 1540px) {
+  .card {
+    padding: 0 60px;
+  }
+
+  .card:hover, .card:focus-within {
+    outline: 1px solid @color-grey66;
+  }
+}
